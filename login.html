@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+body {
+    backdrop-filter: blur(3.5px);
+    background-image: linear-gradient(-183deg, #792f2fab -19%, rgba(255,255,255,-23) 113%);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    min-height: 100dvh;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.main {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 410px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 40px;
+    box-shadow: 4px 5px 38px 5px rgb(78 78 78);
+}
+
+.header {
+    text-align: center;
+}
+
+#cash {
+    font-family: "Playfair Display", serif;
+}
+
+.header h2 {
+    color: #000;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.header p {
+    font-size: 22px;
+}
+
+button {
+    height: 40px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #792f2fab;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    border: none;
+    transition: all .5s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 1px 2px 10px 2px rgb(78 78 78);
+}
+
+.form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #000;
+    border-radius: 0;
+    color: #000;
+}
+
+.form-control:focus {
+    background: transparent;
+    border-color: #b23360fc;
+    box-shadow: none;
+}
+
+.form-floating > label {
+    transition: all 0.3s ease-in-out;
+    color: black;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0;
+}
+
+select {
+    background: transparent;
+    color: #000;
+    border: none;
+    border-bottom: 2px solid #000;
+    border-radius: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #b23360fc;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+</style>
+
+<body>
+    <div class="main bg-white" data-aos="zoom-in">
+        <div class="header">
+            <h2 id="cash" class="my-4">LOGIN</h2>
+            <a style="font-weight: 600; color: #792f2fab;" class="text-decoration-underline" href="signup.html">Create account</a>
+        </div>
+
+        <!-- Email Input -->
+        <div class="form-floating mb-3 mt-4">
+            <input type="email" class="form-control bg-transparent" id="email" placeholder="Email">
+            <label for="email">Email address</label>
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-floating">
+            <input type="password" class="form-control bg-transparent" id="password" placeholder="Password">
+            <label for="password">Password</label>
+        </div>
+
+        <!-- Role Dropdown -->
+        <select id="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="user">Login as User</option>
+            <option value="admin">Login as Admin</option>
+        </select>
+
+        <div id="errorMessage" class="error-message"></div>
+        
+        <!-- Login Button -->
+        <center>
+            <button type="button" onclick="validateForm()">Login</button>
+        </center>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1500 });
+
+        function validateForm() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const role = document.getElementById("role").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            errorMessage.textContent = ""; // Clear previous error messages
+
+            if (!email || !password || !role) {
+                errorMessage.textContent = "Please fill in all the fields.";
+            } else {
+                // Redirect to dashboard based on role
+                if (role === "user") {
+                    window.location.href = "userDashboard.html";
+                } else if (role === "admin") {
+                    window.location.href = "adminDashboard.html";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
